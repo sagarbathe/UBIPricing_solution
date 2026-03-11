@@ -10,18 +10,19 @@
 ## Table of Contents
 
 1. [Solution Overview](#solution-overview)
-2. [Architecture](#architecture)
-3. [Persona Pages](#persona-pages)
-4. [Gold Tables](#gold-tables)
-5. [Ontology Definition](#ontology-definition)
-6. [Prerequisites](#prerequisites)
-7. [Pre-Work: Setting Up the Fabric Environment](#pre-work-setting-up-the-fabric-environment)
-8. [Application Setup](#application-setup)
-9. [Configuration](#configuration)
-10. [Running the Application](#running-the-application)
-11. [Project Structure](#project-structure)
-12. [Notebooks Reference](#notebooks-reference)
-13. [Troubleshooting](#troubleshooting)
+2. [App UI](#app-ui)
+3. [Architecture](#architecture)
+4. [Persona Pages](#persona-pages)
+5. [Gold Tables](#gold-tables)
+6. [Ontology Definition](#ontology-definition)
+7. [Prerequisites](#prerequisites)
+8. [Pre-Work: Setting Up the Fabric Environment](#pre-work-setting-up-the-fabric-environment)
+9. [Application Setup](#application-setup)
+10. [Configuration](#configuration)
+11. [Running the Application](#running-the-application)
+12. [Project Structure](#project-structure)
+13. [Notebooks Reference](#notebooks-reference)
+14. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -46,6 +47,28 @@ pricing pipeline** built on Microsoft Fabric:
 6. **AI Copilots** — Fabric Data Agents (backed by the OpenAI Assistants
    API) let each persona ask natural-language questions against the Gold
    tables.
+
+---
+
+## App UI
+
+The Streamlit application provides an integrated experience with three
+interactive views per persona:
+
+| View | Description |
+|------|-------------|
+| **📊 Power BI Dashboard** | Embedded Power BI report with interactive visuals tailored to the persona |
+| **💬 Data Agent on Lakehouse & KQL** | Natural-language Q&A powered by a Fabric Data Agent querying Lakehouse Gold tables and Eventhouse KQL tables |
+| **🧠 Data Agent on Fabric Ontology** | Natural-language Q&A powered by a Fabric Data Agent backed by a Fabric Ontology for semantic reasoning |
+
+<!-- Replace the placeholder below with your app screenshot.
+     Upload the image to GitHub (drag into the issue/PR editor) and paste the generated URL. -->
+
+![App UI Screenshot](https://github.com/user-attachments/assets/<YOUR_SCREENSHOT_ASSET_ID>)
+
+> **Note:** This version currently implements the **Pricing / Actuarial**
+> persona only. Additional personas (Underwriting, Agent/Advisor, Portfolio
+> Manager, Executive/Strategy) will be added in future releases.
 
 ---
 
@@ -79,17 +102,22 @@ pricing pipeline** built on Microsoft Fabric:
 
 ## Persona Pages
 
-The app provides five role-based views. Each page pairs an **embedded
-Power BI report** with a **Fabric Data Agent** chat panel. Users can
-toggle between split view, expanded report, or expanded agent.
+The app is designed for five role-based views. Each page pairs an **embedded
+Power BI report** with **Fabric Data Agent** chat panels. Users can switch
+between the Power BI dashboard, a Data Agent on the Lakehouse/KQL semantic
+model, or a Data Agent on the Fabric Ontology.
 
-| Persona | Page | Key Question |
-|---------|------|-------------|
-| 📐 **Pricing / Actuarial** | `pages/pricing.py` | Are we pricing risk correctly? |
-| ⚖️ **Underwriting** | `pages/underwriting.py` | Why did this premium change, and is it defensible? |
-| 🧑‍💼 **Agent / Advisor** | `pages/agent_advisor.py` | Help me explain this premium to the customer. |
-| 📊 **Portfolio Manager** | `pages/portfolio.py` | Is UBI improving the book of business? |
-| 🧠 **Executive / Strategy** | `pages/executive.py` | Is UBI worth the investment? |
+> **Current release:** Only the **Pricing / Actuarial** persona is fully
+> implemented. The remaining personas are scaffolded and will be completed
+> in upcoming releases.
+
+| Persona | Page | Key Question | Status |
+|---------|------|-------------|--------|
+| 📐 **Pricing / Actuarial** | `pages/pricing.py` | Are we pricing risk correctly? | ✅ Available |
+| ⚖️ **Underwriting** | `pages/underwriting.py` | Why did this premium change, and is it defensible? | 🔜 Coming soon |
+| 🧑‍💼 **Agent / Advisor** | `pages/agent_advisor.py` | Help me explain this premium to the customer. | 🔜 Coming soon |
+| 📊 **Portfolio Manager** | `pages/portfolio.py` | Is UBI improving the book of business? | 🔜 Coming soon |
+| 🧠 **Executive / Strategy** | `pages/executive.py` | Is UBI worth the investment? | 🔜 Coming soon |
 
 ---
 
