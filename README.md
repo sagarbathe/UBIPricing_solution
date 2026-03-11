@@ -9,20 +9,26 @@
 
 ## Table of Contents
 
-1. [Solution Overview](#solution-overview)
-2. [App UI](#app-ui)
-3. [Architecture](#architecture)
+1. [Architecture](#architecture)
+2. [Solution Overview](#solution-overview)
+3. [App UI](#app-ui)
 4. [Persona Pages](#persona-pages)
-5. [Gold Tables](#gold-tables)
-6. [Ontology Definition](#ontology-definition)
-7. [Prerequisites](#prerequisites)
-8. [Pre-Work: Setting Up the Fabric Environment](#pre-work-setting-up-the-fabric-environment)
-9. [Application Setup](#application-setup)
-10. [Configuration](#configuration)
-11. [Running the Application](#running-the-application)
-12. [Project Structure](#project-structure)
-13. [Notebooks Reference](#notebooks-reference)
-14. [Troubleshooting](#troubleshooting)
+6. [Gold Tables](#gold-tables)
+7. [Ontology Definition](#ontology-definition)
+8. [Prerequisites](#prerequisites)
+9. [Pre-Work: Setting Up the Fabric Environment](#pre-work-setting-up-the-fabric-environment)
+10. [Application Setup](#application-setup)
+11. [Configuration](#configuration)
+12. [Running the Application](#running-the-application)
+13. [Project Structure](#project-structure)
+14. [Notebooks Reference](#notebooks-reference)
+15. [Troubleshooting](#troubleshooting)
+
+---
+
+## Architecture
+
+<img width="896" height="477" alt="image" src="https://github.com/user-attachments/assets/182f8c63-f239-4f01-8e3d-9bded7c6e0c0" />
 
 ---
 
@@ -47,6 +53,8 @@ pricing pipeline** built on Microsoft Fabric:
 6. **AI Copilots** — Fabric Data Agents (backed by the OpenAI Assistants
    API) let each persona ask natural-language questions against the Gold
    tables.
+      a. Fabric Data agent built on lakehouse and kql tables
+      b. Fabric Data agent built on FabricIQ ontology
 
 ---
 
@@ -61,6 +69,7 @@ interactive views per persona:
 | **💬 Data Agent on Lakehouse & KQL** | Natural-language Q&A powered by a Fabric Data Agent querying Lakehouse Gold tables and Eventhouse KQL tables |
 | **🧠 Data Agent on Fabric Ontology** | Natural-language Q&A powered by a Fabric Data Agent backed by a Fabric Ontology for semantic reasoning |
 
+## UI screenshot
 <img width="1159" height="659" alt="image" src="https://github.com/user-attachments/assets/6ec348be-d76d-453a-aeb7-33c14db98e27" />
 
 
@@ -70,13 +79,8 @@ interactive views per persona:
 
 ---
 
-## Architecture
+## Components
 
-<img width="1808" height="860" alt="image" src="https://github.com/user-attachments/assets/f13afb81-bb11-45c7-a298-b823a8640d60" />
-
-
-
-```
 ┌──────────────────────────────────────────────────────────────────┐
 │                      Microsoft Fabric                            │
 │                                                                  │
@@ -95,8 +99,6 @@ interactive views per persona:
 │  └────────────────────────┘          └───────────────────────┘  │
 └──────────────────────────────────────────────────────────────────┘
 ```
-
----
 
 ## Persona Pages
 
