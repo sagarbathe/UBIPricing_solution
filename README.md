@@ -61,10 +61,8 @@ interactive views per persona:
 | **💬 Data Agent on Lakehouse & KQL** | Natural-language Q&A powered by a Fabric Data Agent querying Lakehouse Gold tables and Eventhouse KQL tables |
 | **🧠 Data Agent on Fabric Ontology** | Natural-language Q&A powered by a Fabric Data Agent backed by a Fabric Ontology for semantic reasoning |
 
-<!-- Replace the placeholder below with your app screenshot.
-     Upload the image to GitHub (drag into the issue/PR editor) and paste the generated URL. -->
+<img width="1159" height="659" alt="image" src="https://github.com/user-attachments/assets/6ec348be-d76d-453a-aeb7-33c14db98e27" />
 
-![App UI Screenshot](https://github.com/user-attachments/assets/<YOUR_SCREENSHOT_ASSET_ID>)
 
 > **Note:** This version currently implements the **Pricing / Actuarial**
 > persona only. Additional personas (Underwriting, Agent/Advisor, Portfolio
