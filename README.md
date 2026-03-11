@@ -13,16 +13,16 @@
 2. [Solution Overview](#solution-overview)
 3. [App UI](#app-ui)
 4. [Persona Pages](#persona-pages)
-6. [Gold Tables](#gold-tables)
-7. [Ontology Definition](#ontology-definition)
-8. [Prerequisites](#prerequisites)
-9. [Pre-Work: Setting Up the Fabric Environment](#pre-work-setting-up-the-fabric-environment)
-10. [Application Setup](#application-setup)
-11. [Configuration](#configuration)
-12. [Running the Application](#running-the-application)
-13. [Project Structure](#project-structure)
-14. [Notebooks Reference](#notebooks-reference)
-15. [Troubleshooting](#troubleshooting)
+5. [Gold Tables](#gold-tables)
+6. [Ontology Definition](#ontology-definition)
+7. [Prerequisites](#prerequisites)
+8. [Pre-Work: Setting Up the Fabric Environment](#pre-work-setting-up-the-fabric-environment)
+9. [Application Setup](#application-setup)
+10. [Configuration](#configuration)
+11. [Running the Application](#running-the-application)
+12. [Project Structure](#project-structure)
+13. [Notebooks Reference](#notebooks-reference)
+14. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -53,9 +53,8 @@ pricing pipeline** built on Microsoft Fabric:
 6. **AI Copilots** — Fabric Data Agents (backed by the OpenAI Assistants
    API) let each persona ask natural-language questions against the Gold
    tables.
-   
-         a. Fabric Data agent built on lakehouse and kql tables
-         b. Fabric Data agent built on FabricIQ ontology
+   - Fabric Data Agent built on Lakehouse and KQL tables
+   - Fabric Data Agent built on FabricIQ Ontology
 
 ---
 
@@ -70,8 +69,7 @@ interactive views per persona:
 | **💬 Data Agent on Lakehouse & KQL** | Natural-language Q&A powered by a Fabric Data Agent querying Lakehouse Gold tables and Eventhouse KQL tables |
 | **🧠 Data Agent on Fabric Ontology** | Natural-language Q&A powered by a Fabric Data Agent backed by a Fabric Ontology for semantic reasoning |
 
-## UI screenshot
-<img width="1159" height="659" alt="image" src="https://github.com/user-attachments/assets/6ec348be-d76d-453a-aeb7-33c14db98e27" />
+<img width="1159" height="659" alt="App UI Screenshot" src="https://github.com/user-attachments/assets/6ec348be-d76d-453a-aeb7-33c14db98e27" />
 
 
 > **Note:** This version currently implements the **Pricing / Actuarial**
@@ -82,6 +80,7 @@ interactive views per persona:
 
 ## Components
 
+```
 ┌──────────────────────────────────────────────────────────────────┐
 │                      Microsoft Fabric                            │
 │                                                                  │
@@ -100,6 +99,8 @@ interactive views per persona:
 │  └────────────────────────┘          └───────────────────────┘  │
 └──────────────────────────────────────────────────────────────────┘
 ```
+
+---
 
 ## Persona Pages
 
@@ -445,7 +446,7 @@ sidebar to view the corresponding Power BI report and Data Agent.
 | Power BI report shows sign-in prompt | Ensure `report_id` and `group_id` are correct in `config.py`. Enable Workspace Identity or run `az login`. |
 | Data Agent returns authentication error | Run `az login` locally, or enable Workspace Identity in Fabric. |
 | Data Agent placeholder message appears | Replace the `<YOUR_...>` endpoint in `config.py` with your actual Data Agent URL. |
-| Notebooks fail with table-not-found | Run notebooks in order (1 → 5). Ensure the lakehouse is attached to the notebook. |
+| Notebooks fail with table-not-found | Run notebooks in order (1 → 6). Ensure the lakehouse is attached to the notebook. |
 | Missing CSV files error | Upload the source CSVs to `Files/AutoClaims_csv/` in your lakehouse before running `load auto claim tables.ipynb`. |
 | Streamlit import errors | Ensure all dependencies are installed: `pip install -r requirements.txt` |
 

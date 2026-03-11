@@ -18,7 +18,7 @@ POWERBI_REPORTS = {
         "title": "Pricing Adequacy Dashboard",
         "report_id": "<YOUR_PRICING_REPORT_ID>",
         "group_id": "<YOUR_WORKSPACE_ID>",
-        "embed_url": "https://app.powerbi.com/reportEmbed?reportId=<YOUR_PRICING_REPORT_ID>&autoAuth=true&ctid=<YOUR_TENANT_ID>&actionBarEnabled=true",
+        "embed_url": "https://app.powerbi.com/reportEmbed?reportId=<YOUR_PRICING_REPORT_ID>&autoAuth=true&ctid=<YOUR_TENANT_ID>",
         "description": (
             "Expected Loss Cost vs Recommended Premium · Loss Ratio by coverage type · "
             "Distribution of premium increases/decreases · Policies where ELC > Premium"
@@ -84,9 +84,9 @@ DATA_AGENTS = {
         "name": "Pricing Agent (FabricIQ)",
         "endpoint": "https://api.fabric.microsoft.com/v1/workspaces/<YOUR_WORKSPACE_ID>/dataagents/<YOUR_PRICING_ONTOLOGY_AGENT_ID>/aiassistant/openai",
         "suggested_prompts": [
-            "Which scored policy periods have the highest risk score?",
-            "Show me underpriced policies and their reason codes.",
-            "What is the average premium change for high-risk drivers?",
+            "Which policies are underpriced relative to expected loss?",
+            "Why is policy POL4020 underpriced?",
+            "List drivers with high severity accidents who were underpriced the following year",
         ],
     },
     "underwriting": {
