@@ -69,7 +69,9 @@ interactive views per persona:
 | **💬 Data Agent on Lakehouse & KQL** | Natural-language Q&A powered by a Fabric Data Agent querying Lakehouse Gold tables and Eventhouse KQL tables |
 | **🧠 Data Agent on Fabric Ontology** | Natural-language Q&A powered by a Fabric Data Agent backed by a Fabric Ontology for semantic reasoning |
 
-<img width="1159" height="659" alt="App UI Screenshot" src="https://github.com/user-attachments/assets/6ec348be-d76d-453a-aeb7-33c14db98e27" />
+## UI Screenshot
+
+![alt text](image.png)
 
 
 > **Note:** This version currently implements the **Pricing / Actuarial**
