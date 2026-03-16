@@ -316,9 +316,36 @@ instructions. In summary:
 
 ### Step 9 — Create Fabric Data Agents
 
-1. In the Fabric workspace, create **Data Agents** under Data Science.
-2. Configure each agent to query the Gold lakehouse tables.
-3. Copy the agent endpoint URLs for use in `config.py`.
+You need to create **two** Fabric Data Agents in your workspace — one
+backed by the **Semantic Model** (Lakehouse & KQL tables; created in Step 7) and one backed by the **Fabric Ontology** (created in Step 8).
+
+> 📖 **Documentation:** For step-by-step guidance on creating data agents,
+> refer to
+> [How to create a Data Agent](https://learn.microsoft.com/en-us/fabric/data-science/how-to-create-data-agent).
+
+#### Agent 1 — Data Agent on Semantic Model (Lakehouse & KQL)
+
+1. In the Fabric portal, navigate to your workspace.
+2. Select **+ New item** → **Data Agent** (under Data Science).
+3. Give the agent a name (e.g., `da_UBI_SemanticModel`).
+4. Under data sources, add the **Semantic Model** that exposes your
+   Lakehouse Gold tables and Eventhouse KQL tables.
+5. Optionally add custom instructions to guide the agent on table
+   relationships and common query patterns.
+6. After creation, copy the **agent endpoint URL** from the agent
+   settings for use in `config.py`.
+
+#### Agent 2 — Data Agent on Fabric Ontology
+
+1. In the Fabric portal, navigate to your workspace.
+2. Select **+ New item** → **Data Agent** (under Data Science).
+3. Give the agent a name (e.g., `da_UBI_Ontology`).
+4. Under data sources, add the **Fabric Ontology** you imported in
+   Step 8 (`ont_UBI_definition`).
+5. This agent leverages the ontology's entity types, relationships,
+   and semantic metadata for richer natural-language reasoning.
+6. After creation, copy the **agent endpoint URL** from the agent
+   settings for use in `config.py`.
 
 ---
 
