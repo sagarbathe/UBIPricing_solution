@@ -246,15 +246,49 @@ Open and run **`data/load auto claim tables.ipynb`**. This notebook:
 
 ### Step 4 — Generate Driver Telemetry Data
 
+#### Prerequisites for this step
+
+Before running the notebook, ensure the following are in place:
+
+1. **Steps 1–3 completed** — The Lakehouse exists and the base tables
+   (including `policy`) are populated with data. The notebook reads
+   `policy.csv` from `Files/AutoClaims_csv/` to determine active
+   drivers and policy date ranges.
+2. **Fabric Eventhouse created** — Create an **Eventhouse** in your
+   Fabric workspace (e.g., `ev_driver_telemetry`) with a **database**
+   of the same name.
+3. **Eventhouse table created** — In the Eventhouse Query Editor, run
+   the `.create-merge table` KQL command (printed by the notebook) to
+   create the `driver_telemetry_data` table with the required schema.
+4. **Eventhouse connection URIs** — Obtain the **Query URI** and
+   **Ingest URI** for your Eventhouse. Update the following variables
+   in the notebook's configuration cell:
+   - `EVENTHOUSE_WORKSPACE` — your Fabric workspace name
+   - `EVENTHOUSE_NAME` — your Eventhouse name
+   - `EVENTHOUSE_DATABASE` — your database name
+   - `EVENTHOUSE_TABLE` — target table name (default:
+     `driver_telemetry_data`)
+   - `eventhouse_query_uri` — the Query URI
+     (e.g., `https://<cluster>.z3.kusto.fabric.microsoft.com`)
+   - `eventhouse_ingest_uri` — the Ingest URI
+     (e.g., `https://ingest-<cluster>.z3.kusto.fabric.microsoft.com`)
+5. **Permissions** — The workspace identity (or your user account) must
+   have **Admin** or **Contributor** role on the Eventhouse to write
+   data via the Kusto REST API.
+
+#### Running the notebook
+
 Open and run **`data/create driver telemetry data for eventhouse.ipynb`**.
 This notebook:
 - Reads policy data to determine active drivers and date ranges.
 - Simulates realistic trip-level telemetry (speed, braking, acceleration,
   cornering, safety scores) for each driver.
-- Writes telemetry data to a Fabric **Eventhouse** (configure your
-  Eventhouse connection details in the notebook).
-- Also creates a `driver_telemetry_data` table in the lakehouse for
-  downstream Spark processing.
+- Authenticates using `mssparkutils.credentials.getToken()` and streams
+  batches to the Eventhouse via the Kusto REST API (MultiJSON format).
+- Also creates a `driver_telemetry_data` Delta table in the Lakehouse
+  for downstream Spark processing.
+- Prevents duplicate/overlapping trips by checking existing trip
+  timestamps before generating new ones. Safe to run multiple times.
 
 ### Step 5 — Build Gold Tables
 
