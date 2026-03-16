@@ -276,6 +276,8 @@ Before running the notebook, ensure the following are in place:
    have **Admin** or **Contributor** role on the Eventhouse to write
    data via the Kusto REST API.
 
+**PS: This notebook can be run multiple times to add new driver telemetry data. The notebook is designed to add unique telemtry based on policy durations**
+
 #### Running the notebook
 
 Open and run **`data/create driver telemetry data for eventhouse.ipynb`**.
