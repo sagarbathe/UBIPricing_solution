@@ -1,5 +1,5 @@
 """
-UBI Insurance Intelligence App
+Usage-based Pricing Intelligence App
 ================================
 A role-based insurance application combining Usage-Based Pricing,
 Portfolio Risk, and AI Explainability — powered by Microsoft Fabric Gold tables.
@@ -22,7 +22,7 @@ from config import PERSONAS
 # Page config
 # ──────────────────────────────────────────────
 st.set_page_config(
-    page_title="UBI Insurance Intelligence",
+    page_title="Usage-based Pricing Intelligence",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded",

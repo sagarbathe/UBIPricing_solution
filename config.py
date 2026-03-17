@@ -1,5 +1,5 @@
 """
-Configuration for UBI Insurance Intelligence App.
+Configuration for Usage-based Pricing Intelligence App.
 Contains Power BI report URLs, Fabric Data Agent endpoints,
 and persona definitions.
 
