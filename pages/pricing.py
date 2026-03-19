@@ -3,10 +3,11 @@
 
 Purpose: "Are we pricing risk correctly, and will we hit our target loss ratio?"
 
-Three views:
+Four views:
   1. Power BI Dashboard
-  2. Pricing Agent on Semantic Model (Data Agent)
-  3. Pricing Agent on FabricIQ (Ontology)
+  2. Adhoc / Explore (with edit mode for semantic model exploration)
+  3. Pricing Agent on Semantic Model (Data Agent)
+  4. Pricing Agent on FabricIQ (Ontology)
 """
 
 import streamlit as st
@@ -30,7 +31,7 @@ def render() -> None:
     if view_key not in st.session_state:
         st.session_state[view_key] = "dashboard"
 
-    cols = st.columns(3)
+    cols = st.columns(4)
     with cols[0]:
         if st.button("📊 Power BI Dashboard", key="pricing_btn_dashboard",
                      use_container_width=True,
@@ -38,12 +39,18 @@ def render() -> None:
             st.session_state[view_key] = "dashboard"
             st.rerun()
     with cols[1]:
+        if st.button("� Adhoc / Explore", key="pricing_btn_adhoc",
+                     use_container_width=True,
+                     disabled=(st.session_state[view_key] == "adhoc")):
+            st.session_state[view_key] = "adhoc"
+            st.rerun()
+    with cols[2]:
         if st.button("💬 Pricing Agent on Lakehouse and KQL", key="pricing_btn_agent_sm",
                      use_container_width=True,
                      disabled=(st.session_state[view_key] == "agent_semantic")):
             st.session_state[view_key] = "agent_semantic"
             st.rerun()
-    with cols[2]:
+    with cols[3]:
         if st.button("🧠 Pricing Agent on FabricIQ Ontology", key="pricing_btn_agent_onto",
                      use_container_width=True,
                      disabled=(st.session_state[view_key] == "agent_ontology")):
@@ -74,7 +81,30 @@ def render() -> None:
             """
         )
 
-    # ── 2. Pricing Agent on Semantic Model ────────────────
+    # ── 2. Adhoc / Explore (Blank Report in Edit Mode) ───
+    elif view_mode == "adhoc":
+        report = POWERBI_REPORTS["adhoc"]
+        render_powerbi_report(
+            embed_url=report["embed_url"],
+            title=report["title"],
+            description=report["description"],
+            report_id=report.get("report_id", ""),
+            group_id=report.get("group_id", ""),
+            edit_mode=True,
+            height=600,
+        )
+        st.divider()
+        st.markdown("#### 🔍 Adhoc Exploration")
+        st.markdown(
+            """
+- **Interactive editing** — drag and drop fields to create custom visuals
+- **Full authoring experience** — access to all visualization types and formatting options
+- **Connect to semantic models** — explore data from any dataset in the workspace
+- **Build custom analysis** — investigate specific pricing questions on the fly
+            """
+        )
+
+    # ── 3. Pricing Agent on Semantic Model ────────────────
     elif view_mode == "agent_semantic":
         agent = DATA_AGENTS["pricing"]
         render_data_agent_chat(
@@ -87,7 +117,7 @@ def render() -> None:
             endpoint=agent["endpoint"],
         )
 
-    # ── 3. Pricing Agent on FabricIQ (Ontology) ──────────
+    # ── 4. Pricing Agent on FabricIQ (Ontology) ──────────
     elif view_mode == "agent_ontology":
         agent = DATA_AGENTS["pricing_ontology"]
         render_data_agent_chat(

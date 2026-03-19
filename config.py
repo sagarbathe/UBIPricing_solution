@@ -16,8 +16,10 @@ Fabric Workspace Identity when deployed.
 POWERBI_REPORTS = {
     "pricing": {
         "title": "Pricing Adequacy Dashboard",
-        "report_id": "<YOUR_PRICING_REPORT_ID>",
-        "group_id": "<YOUR_WORKSPACE_ID>",
+        #"report_id": "<YOUR_PRICING_REPORT_ID>",
+        "report_id": "76cdd8e3-f32a-4de1-b167-74ef41440769",
+        #"group_id": "<YOUR_WORKSPACE_ID>",
+        "group_id": "db7dcf85-001e-4277-a85e-3c92029900bc",
         "embed_url": "https://app.powerbi.com/reportEmbed?reportId=<YOUR_PRICING_REPORT_ID>&autoAuth=true&ctid=<YOUR_TENANT_ID>",
         "description": (
             "Expected Loss Cost vs Recommended Premium · Loss Ratio by coverage type · "
@@ -63,8 +65,18 @@ POWERBI_REPORTS = {
             "Loss ratio before vs after UBI · Retention proxy · "
             "Risk reduction trends · Strategic KPIs"
         ),
-    },
-}
+    },    "adhoc": {
+        "title": "Adhoc / Explore",
+        #"report_id": "<Your adhoc report_id>",
+        "report_id": "c663f8be-c2a6-4848-b771-5a7b37514ecd",
+        #"group_id": "<YOUR_WORKSPACE_ID>",
+        "group_id": "db7dcf85-001e-4277-a85e-3c92029900bc",
+        "embed_url": "https://app.powerbi.com/reportEmbed?reportId=c663f8be-c2a6-4848-b771-5a7b37514ecd&autoAuth=true&ctid=<YOUR_TENANT_ID>",
+        "description": (
+            "Blank report for ad-hoc exploration · Build your own visuals · "
+            "Connect to any dataset in the workspace"
+        ),
+    },}
 
 # ──────────────────────────────────────────────
 # Fabric Data Agent Endpoints (placeholders)
@@ -73,7 +85,8 @@ POWERBI_REPORTS = {
 DATA_AGENTS = {
     "pricing": {
         "name": "Pricing Agent",
-        "endpoint": "https://api.fabric.microsoft.com/v1/workspaces/<YOUR_WORKSPACE_ID>/dataagents/<YOUR_PRICING_AGENT_ID>/aiassistant/openai",
+        #"endpoint": "https://api.fabric.microsoft.com/v1/workspaces/<YOUR_WORKSPACE_ID>/dataagents/<YOUR_PRICING_AGENT_ID>/aiassistant/openai",
+        "endpoint": "https://api.fabric.microsoft.com/v1/workspaces/db7dcf85-001e-4277-a85e-3c92029900bc/dataagents/7a3c56ac-ed13-4fe8-bac2-e2a1cb295ab3/aiassistant/openai",
         "suggested_prompts": [
             "Which policies are underpriced relative to expected loss?",
             "Why is policy POL4020 underpriced?",
@@ -82,7 +95,8 @@ DATA_AGENTS = {
     },
     "pricing_ontology": {
         "name": "Pricing Agent (FabricIQ)",
-        "endpoint": "https://api.fabric.microsoft.com/v1/workspaces/<YOUR_WORKSPACE_ID>/dataagents/<YOUR_PRICING_ONTOLOGY_AGENT_ID>/aiassistant/openai",
+        #"endpoint": "https://api.fabric.microsoft.com/v1/workspaces/<YOUR_WORKSPACE_ID>/dataagents/<YOUR_PRICING_ONTOLOGY_AGENT_ID>/aiassistant/openai",
+        "endpoint": "https://api.fabric.microsoft.com/v1/workspaces/db7dcf85-001e-4277-a85e-3c92029900bc/dataagents/cf55aeb3-4c5c-4b09-9d56-bb32c997e083/aiassistant/openai",
         "suggested_prompts": [
             "Which policies are underpriced relative to expected loss?",
             "Why is policy POL4020 underpriced?",

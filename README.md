@@ -69,12 +69,13 @@ loss?” or “Explain this premium increase in plain English.”). This convers
 
 ## App UI
 
-The Streamlit application provides an integrated experience with three
+The Streamlit application provides an integrated experience with four
 interactive views per persona:
 
 | View | Description |
 |------|-------------|
 | **📊 Power BI Dashboard** | Embedded Power BI report with interactive visuals tailored to the persona |
+| **🔍 Adhoc / Explore** | Interactive Power BI edit mode for ad-hoc analysis — drag and drop fields from semantic models to build custom visuals on the fly |
 | **💬 Data Agent on Lakehouse & KQL** | Natural-language Q&A powered by a Fabric Data Agent querying Lakehouse Gold tables and Eventhouse KQL tables |
 | **🧠 Data Agent on Fabric Ontology** | Natural-language Q&A powered by a Fabric Data Agent backed by a Fabric Ontology for semantic reasoning |
 
@@ -334,6 +335,12 @@ To publish them to your Fabric workspace:
 5. Enter these values in `config.py` under `POWERBI_REPORTS` for the
    corresponding persona.
 
+> **Note:** For the **Adhoc / Explore** view, create a blank Power BI
+> report in your workspace (or use an existing blank report). This report
+> serves as an interactive canvas where users can drag and drop fields
+> from semantic models to build custom visuals. Update the `adhoc` entry
+> in `config.py` with its Report ID.
+
 > **Tip:** If you build additional reports for other personas
 > (Underwriting, Agent/Advisor, Portfolio, Executive), save the `.pbix`
 > files into the `reports/` folder and follow the same publish workflow.
@@ -429,9 +436,18 @@ POWERBI_REPORTS = {
         "group_id": "<YOUR_WORKSPACE_GUID>",
         ...
     },
+    "adhoc": {
+        "report_id": "c663f8be-c2a6-4848-b771-5a7b37514ecd",  # Your blank report ID
+        "group_id": "<YOUR_WORKSPACE_GUID>",
+        ...
+    },
     ...
 }
 ```
+
+> **Note:** The `adhoc` entry should point to a blank Power BI report that
+> users can edit interactively to explore semantic models and build custom
+> visuals on the fly.
 
 ### Fabric Data Agents
 

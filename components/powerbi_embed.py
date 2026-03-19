@@ -51,6 +51,60 @@ _EMBED_HTML_TEMPLATE = """
 </html>
 """
 
+# ── Power BI JS SDK embed in EDIT mode (for adhoc exploration) ───
+_EMBED_HTML_EDIT_TEMPLATE = """
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.23.1/dist/powerbi.min.js"></script>
+  <style>
+    html, body {{ margin:0; padding:0; overflow:hidden; height:100%; }}
+    #reportContainer {{ width:100%; height:100%; }}
+  </style>
+</head>
+<body>
+  <div id="reportContainer"></div>
+  <script>
+    var models = window["powerbi-client"].models;
+    var config = {{
+      type: "report",
+      id: "{report_id}",
+      embedUrl: "{embed_url}",
+      accessToken: "{access_token}",
+      tokenType: models.TokenType.Aad,
+      viewMode: models.ViewMode.Edit,
+      permissions: models.Permissions.All,
+      settings: {{
+        panes: {{
+          filters: {{ expanded: false, visible: true }},
+          pageNavigation: {{ visible: true }},
+          fields: {{ expanded: true, visible: true }},
+          visualizations: {{ expanded: true, visible: true }}
+        }},
+        background: models.BackgroundType.Transparent,
+        layoutType: models.LayoutType.Custom,
+        customLayout: {{
+          displayOption: models.DisplayOption.FitToPage
+        }}
+      }}
+    }};
+    var container = document.getElementById("reportContainer");
+    var report = powerbi.embed(container, config);
+    
+    // Enable report editing
+    report.on("loaded", function() {{
+      console.log("Report loaded in edit mode");
+    }});
+    
+    report.on("error", function(event) {{
+      console.error("Report error:", event.detail);
+    }});
+  </script>
+</body>
+</html>
+"""
+
 
 def render_powerbi_report(
     embed_url: str,
@@ -59,6 +113,7 @@ def render_powerbi_report(
     height: int = 500,
     report_id: str = "",
     group_id: str = "",
+    edit_mode: bool = False,
 ) -> None:
     """
     Render an embedded Power BI report panel.
@@ -77,6 +132,9 @@ def render_powerbi_report(
         Power BI report GUID (from config).
     group_id : str
         Power BI workspace / group GUID (from config).
+    edit_mode : bool
+        If True, embed report in edit mode with all authoring panes visible.
+        Use for adhoc exploration and building custom visuals.
     """
     st.markdown(f"### 📊 {title}")
     if description:
@@ -124,7 +182,9 @@ def render_powerbi_report(
 
     if token_info:
         # Render with the Power BI JS SDK — AAD token, no sign-in
-        page_html = _EMBED_HTML_TEMPLATE.format(
+        # Use edit mode template if edit_mode is True
+        template = _EMBED_HTML_EDIT_TEMPLATE if edit_mode else _EMBED_HTML_TEMPLATE
+        page_html = template.format(
             report_id=_html.escape(token_info["report_id"]),
             embed_url=_html.escape(token_info["embed_url"]),
             access_token=_html.escape(token_info["token"]),
